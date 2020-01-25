@@ -1,4 +1,4 @@
-# EC2 as socks proxy by ansible
+# EC2 as socks proxy by ansible playbook
 
 ## Installing
 
@@ -23,7 +23,7 @@ After that you should conigure scripts. You may change values in group_vars/all 
 
 ## Using
 
-Then you complete vars with values you may run scripts to create virtual server:
+When you complete vars with values you may run scripts to create virtual server:
 ```sh
 ansible-playbook site.yml
 ```
