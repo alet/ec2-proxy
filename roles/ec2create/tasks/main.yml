@@ -1,0 +1,37 @@
+---
+# Create EC2 virtual server and scripts for connect and destroy
+
+- name: Create EC2 virtual server
+  ec2:
+    key_name: "{{ keypair }}"
+    group: "{{ security_group }}"
+    instance_type: "{{ instance_type }}"
+    image: "{{ image }}"
+    wait: true
+    region: "{{ region }}"
+    vpc_subnet_id: "{{ subnet }}"
+    assign_public_ip: yes
+    aws_access_key: "{{ access_key }}"
+    aws_secret_key: "{{ secret_key }}"
+  register: ec2
+
+- name: Create script for connect to virtual
+  template:
+    src: script.j2
+    dest: ./connect.sh
+    mode: 0755
+  loop: "{{ ec2.instances }}"
+
+- name: Create playbook for delete virtual server
+  template:
+    src: delete.j2
+    dest: ./delete.yml
+    mode: 0644
+  loop: "{{ ec2.instances }}"
+
+- name: Wait for SSH to come up
+  delegate_to: "{{ item.public_dns_name }}"
+  wait_for_connection:
+    delay: 60
+    timeout: 320
+  loop: "{{ ec2.instances }}"

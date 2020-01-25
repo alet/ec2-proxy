@@ -1,0 +1,4 @@
+connect.sh
+delete.yml
+host_vars/
+*.swp

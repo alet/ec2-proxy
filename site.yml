@@ -1,0 +1,10 @@
+---
+# This playbook create EC2 virtual server and create scripts to connect and destroy virtual server.
+
+- name: Create EC2 virtual server
+  hosts: localhost
+  become: no
+  gather_facts: no
+
+  roles:
+    - ec2create

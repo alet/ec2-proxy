@@ -1,0 +1,10 @@
+---
+
+keypair: aws
+instance_type: t2.nano
+security_group: 
+subnet: 
+image: ami-062f7200baf2fa504
+region: us-east-1
+access_key: 
+secret_key: 
