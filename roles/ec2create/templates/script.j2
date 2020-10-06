@@ -2,4 +2,4 @@
 
 # {{ ansible_managed }}
 
-ssh -i ~/.ssh/aws.pem -D 127.0.0.1:3128 ec2-user@{{ item.public_ip }} 'echo "Press Ctrl+d or type exit when finish."; /bin/sh'
+ssh -i ~/.ssh/aws.pem -D 127.0.0.1:3128 ec2-user@{{ item.public_ip }}
