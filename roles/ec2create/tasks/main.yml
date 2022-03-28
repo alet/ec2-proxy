@@ -2,17 +2,20 @@
 # Create EC2 virtual server and scripts for connect and destroy
 
 - name: Create EC2 virtual server
-  ec2:
+  amazon.aws.ec2_instance:
     key_name: "{{ keypair }}"
-    group: "{{ security_group }}"
+    security_group: "{{ security_group }}"
     instance_type: "{{ instance_type }}"
-    image: "{{ image }}"
+    image_id: "{{ image }}"
     wait: true
     region: "{{ region }}"
     vpc_subnet_id: "{{ subnet }}"
-    assign_public_ip: yes
+    network:
+        assign_public_ip: yes
     aws_access_key: "{{ access_key }}"
     aws_secret_key: "{{ secret_key }}"
+    tags:
+        objectives: proxy
   register: ec2
 
 - name: Create script for connect to virtual

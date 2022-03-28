@@ -8,9 +8,9 @@
   gather_facts: no
   tasks:
     - name: Terminate instances that were previously launched
-      ec2:
+      amazon.aws.ec2_instance:
         state: 'absent'
         region: "{{ region }}"
         aws_access_key: "{{ access_key }}"
         aws_secret_key: "{{ secret_key }}"
-        instance_ids: "{{ item.id }}"
+        instance_ids: "{{ item.instance_id }}"

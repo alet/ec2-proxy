@@ -2,4 +2,4 @@
 
 # {{ ansible_managed }}
 
-ssh -i ~/.ssh/aws.pem -D 127.0.0.1:3128 ec2-user@{{ item.public_ip }}
+ssh -i ~/.ssh/aws.pem -D 127.0.0.1:3128 ec2-user@{{ item.network_interfaces[0].association.public_ip }}
